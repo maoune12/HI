@@ -1,3 +1,4 @@
+import os
 import asyncio
 import random
 from telethon import TelegramClient, events
@@ -5,17 +6,15 @@ from telethon.tl.functions.channels import InviteToChannelRequest
 from telethon.tl.functions.messages import GetMessageReactionsListRequest
 from telethon.errors import FloodWaitError, UserPrivacyRestrictedError, ChatAdminRequiredError
 
-# Your credentials (replace with your actual values)
-api_id = 11998203            # Your API ID
-api_hash = "3df4f578e87388e524732ec57b3867f6"      # Your API hash
-phone_number = "+213697657783"  # Your phone number (e.g., "+213697657783")
-
-# Channel usernames
-source_channel = "redotpay"  # Source channel (public)
-target_channel = "RedotPayofficials"    # Target channel
+# Get credentials and channel info from environment variables
+api_id = int(os.environ.get('API_ID'))
+api_hash = os.environ.get('API_HASH')
+phone_number = os.environ.get('PHONE_NUMBER')
+source_channel = os.environ.get('SOURCE_CHANNEL')
+target_channel = os.environ.get('TARGET_CHANNEL')
 
 # Specify the number of old messages to process
-OLD_MESSAGES_LIMIT = 10000000000
+OLD_MESSAGES_LIMIT = 100
 
 # Increase delays to reduce request frequency (in seconds)
 REQUEST_DELAY_MIN = 15
